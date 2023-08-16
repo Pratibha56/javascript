@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url("https://thumbor.forbes.com/thumbor/fit-in/1290x/https://www.forbes.com/advisor/wp-content/uploads/2021/01/sofr_.jpg");
+            background-size: cover;
+             
+        }
+        .clock{
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 10px;
+            background-color:transparent;
+            height: 10vh;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .clock h1{
+            font-size:60px;
+        }
+        .clock span{
+            position: relative;
+            top: -20%;
+            margin: 5px;
+            font-size: 20px;
+            font-weight: 700;
+            
+        }
+        @media screen and ( max-width:400px){
+            .clock{
+                max-width: 210px;
+                padding: 5px;
+            }
+            .clock h1{
+                font-size: 30px;
+            }
+
+        }
+        @media screen and ( min-width:275px) and (max-width:400px){
+            .clock{
+                max-width: 260px;
+                padding: 5px;
+            }
+            .clock h1{
+                font-size: 40px;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <h1 id="time">12:00:00</h1>
+        <span id="timeformate">AM</span>
+    </div>
+    <script>
+        const time = document.getElementById('time');
+        const timeformat = document.getElementById('timeformat');
+
+        document.addEventListener('DOMContentLoaded',()=>{
+            setInterval(showTime, 1000);
+        });
+         //arrow fun
+        const showTime = () =>{
+
+            let date = new Date();
+            let hr = date.getHours();
+            let mins = date.getMinutes();
+            let secs = date.getSeconds();
+
+            hr = hr<10 ? `0${hr}` : hr;
+            mins = mins<10 ? `0${mins}` : mins;
+            secs = secs<10 ? `0${secs}` : secs;
+
+
+            time.innerHTML= `${hr}:${mins}:${secs}`;
+            timeformat.innerHTML = hr>12 ? "PM" : "AM";
+            //console.log("hours"+hr+"mins"+mins+"Secs"+sec);
+        }
+
+    </script>
+</body>
+</html>
